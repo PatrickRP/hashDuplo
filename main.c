@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h>
 #include "hashDuplo.h"
 
-int main(int argc, char* argv[]) {
+int main() {
     FILE *file;
     tmunicipio temp;
     tmunicipio* municipio;
@@ -47,8 +48,10 @@ int main(int argc, char* argv[]) {
 
             if(municipio == NULL)
                 printf("municipio nao encontrado\n");
-            else
-                printf("municipio encontrado\n");
+            else {
+                printf("municipio encontrado\n%s %s %lf %lf %d %d %s %d %s\n\n", temp.cod_ibge, temp.nome, temp.coord[0], temp.coord[1], temp.capital, temp.codigo_uf, temp.siafi_id, temp.ddd,
+                temp.fuso_horario);
+            }
         }
 
         else if(option == 2){
@@ -64,6 +67,8 @@ int main(int argc, char* argv[]) {
         }
 
     } while(option != 0);
+
+    hash_apaga(&h);
 
     return 0;
 }
